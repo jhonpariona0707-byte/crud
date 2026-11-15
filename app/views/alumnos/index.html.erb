@@ -1,0 +1,36 @@
+<div style="font-family: sans-serif; padding: 20px; color: #333;">
+  
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h2>Lista de Alumnos</h2>
+    <%= link_to "Nuevo Alumno", new_alumno_path, style: "background-color: #007bff; color: white; padding: 8px 16px; text-decoration: none; border-radius: 4px; font-weight: bold;" %>
+  </div>
+
+  <table style="width: 100%; border-collapse: collapse; text-align: left;">
+    <thead>
+      <tr style="background-color: #212529; color: white; font-size: 14px;">
+        <th style="padding: 12px; border: 1px solid #dee2e6;">Acciones</th>
+        <th style="padding: 12px; border: 1px solid #dee2e6;">Nombre</th>
+        <th style="padding: 12px; border: 1px solid #dee2e6;">Apellido</th>
+        <th style="padding: 12px; border: 1px solid #dee2e6;">Edad</th>
+        <th style="padding: 12px; border: 1px solid #dee2e6;">Correo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @alumnos.each do |alumno| %>
+        <tr style="border-bottom: 1px solid #dee2e6; font-size: 14px;">
+          <!-- Bloque de acciones similar al de tu imagen -->
+          <td style="padding: 12px; display: flex; gap: 5px;">
+            <%= link_to "👁 View", alumno, style: "background-color: #4da3ff; color: black; padding: 5px 10px; text-decoration: none; border-radius: 3px; font-size: 12px; display: flex; align-items: center;" %>
+            <%= link_to "✏ Edit", edit_alumno_path(alumno), style: "background-color: #ffcc66; color: black; padding: 5px 10px; text-decoration: none; border-radius: 3px; font-size: 12px; display: flex; align-items: center;" %>
+            <%= button_to "❌ Delete", alumno, method: :delete, data: { confirm: "¿Estás seguro?" }, style: "background-color: #ff6666; color: black; padding: 5px 10px; border: none; border-radius: 3px; font-size: 12px; cursor: pointer;" %>
+          </td>
+          <td style="padding: 12px; vertical-align: middle;"><%= alumno.nombre %></td>
+          <td style="padding: 12px; vertical-align: middle;"><%= alumno.apellido %></td>
+          <td style="padding: 12px; vertical-align: middle;"><%= alumno.edad %></td>
+          <td style="padding: 12px; vertical-align: middle;"><%= alumno.correo %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

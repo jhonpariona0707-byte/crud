@@ -1,0 +1,30 @@
+<div style="font-family: sans-serif; max-width: 500px; margin: 30px auto; padding: 25px; border: 1px solid #e3e6f0; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); background: white;">
+  
+  <div style="text-align: center; margin-bottom: 25px;">
+    <div style="background-color: #4e73df; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; margin: 0 auto 10px;">
+      <%= @alumno.nombre[0].upcase rescue "A" %>
+    </div>
+    <h1 style="color: #333; margin: 0; font-size: 22px; font-weight: bold;"><%= @alumno.nombre %> <%= @alumno.apellido %></h1>
+    <p style="color: #858796; margin: 5px 0 0; font-size: 14px;">Estudiante Registrado</p>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 12px; background: #f8f9fc; padding: 15px; border-radius: 6px; border: 1px solid #eaecf4; margin-bottom: 25px;">
+    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #eaecf4; padding-bottom: 8px;">
+      <span style="font-weight: bold; color: #4e73df; font-size: 14px;">Edad:</span>
+      <span style="color: #5a5c69; font-size: 14px;"><%= @alumno.edad %> años</span>
+    </div>
+    <div style="display: flex; justify-content: space-between; padding-top: 4px;">
+      <span style="font-weight: bold; color: #4e73df; font-size: 14px;">Correo:</span>
+      <span style="color: #5a5c69; font-size: 14px;"><%= @alumno.correo %></span>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center;">
+    <%= link_to "✏ Editar Datos", edit_alumno_path(@alumno), style: "background-color: #f6c23e; color: #333; padding: 8px 16px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;" %>
+    
+    <%= link_to "← Volver", alumnos_path, style: "color: #858796; text-decoration: none; font-size: 14px;" %>
+    
+    <%= button_to "🗑 Eliminar", @alumno, method: :delete, data: { confirm: "¿Eliminar permanentemente?" }, style: "background-color: #e74a3b; color: white; border: none; padding: 8px 16px; border-radius: 4px; font-weight: bold; font-size: 14px; cursor: pointer;" %>
+  </div>
+  
+</div>

@@ -1,0 +1,11 @@
+<div style="font-family: sans-serif; max-width: 500px; margin: 30px auto; padding: 20px; border: 1px solid #e3e6f0; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); background: white;">
+  <h1 style="color: #4e73df; margin-bottom: 20px; font-size: 24px; text-align: center; font-weight: bold;">Registrar Nuevo Alumno</h1>
+  
+  <%= render "form", alumno: @alumno %>
+
+  <hr style="border: 0; border-top: 1px solid #e3e6f0; margin: 20px 0;">
+  
+  <div style="text-align: center;">
+    <%= link_to "← Volver a la lista", alumnos_path, style: "color: #858796; text-decoration: none; font-size: 14px;" %>
+  </div>
+</div>

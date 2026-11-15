@@ -1,0 +1,36 @@
+<%= form_with(model: alumno, local: true, style: "display: flex; flex-direction: column; gap: 15px; font-family: sans-serif;") do |form| %>
+  <% if alumno.errors.any? %>
+    <div style="background-color: #f8d7da; color: #721c24; padding: 12px; border-radius: 4px; border: 1px solid #f5c6cb; font-size: 14px;">
+      <h2><%= pluralize(alumno.errors.count, "error") %> impidieron guardar este alumno:</h2>
+      <ul>
+        <% alumno.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div style="display: flex; flex-direction: column; gap: 5px;">
+    <%= form.label :nombre, "Nombre Completo", style: "font-weight: bold; font-size: 14px; color: #495057;" %>
+    <%= form.text_field :nombre, style: "padding: 10px; border: 1px solid #ced4da; border-radius: 4px; font-size: 14px; width: 100%; box-sizing: border-box;" %>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 5px;">
+    <%= form.label :apellido, "Apellidos", style: "font-weight: bold; font-size: 14px; color: #495057;" %>
+    <%= form.text_field :apellido, style: "padding: 10px; border: 1px solid #ced4da; border-radius: 4px; font-size: 14px; width: 100%; box-sizing: border-box;" %>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 5px;">
+    <%= form.label :edad, "Edad", style: "font-weight: bold; font-size: 14px; color: #495057;" %>
+    <%= form.number_field :edad, style: "padding: 10px; border: 1px solid #ced4da; border-radius: 4px; font-size: 14px; width: 100%; box-sizing: border-box;" %>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 5px;">
+    <%= form.label :correo, "Correo Institucional / Personal", style: "font-weight: bold; font-size: 14px; color: #495057;" %>
+    <%= form.email_field :correo, style: "padding: 10px; border: 1px solid #ced4da; border-radius: 4px; font-size: 14px; width: 100%; box-sizing: border-box;" %>
+  </div>
+
+  <div style="margin-top: 10px;">
+    <%= form.submit style: "background-color: #28a745; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; width: 100%;" %>
+  </div>
+<% end %>
