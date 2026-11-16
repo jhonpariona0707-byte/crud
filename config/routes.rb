@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  scope path: "api/v1", as: :api_v1, defaults: { format: :json } do
+    resources :alumnos
+    resources :posts
+  end
+
   resources :alumnos
   resources :posts
   

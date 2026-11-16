@@ -1,0 +1,22 @@
+<section>
+  <div class="page-heading">
+    <h1>Detalle del post</h1>
+    <a class="button secondary" routerLink="/posts">Volver a posts</a>
+  </div>
+
+  @if (errorMessage) {
+    <p class="notice" role="alert">{{ errorMessage }}</p>
+  }
+  @if (loading) {
+    <div class="card"><p>Cargando post…</p></div>
+  } @else if (post) {
+    <article class="card">
+      <h2>{{ post.title }}</h2>
+      <p class="post-content">{{ post.content }}</p>
+      <div class="actions">
+        <a class="button" [routerLink]="['/posts', post.id, 'editar']">Editar post</a>
+        <a class="button secondary" routerLink="/posts">Volver</a>
+      </div>
+    </article>
+  }
+</section>

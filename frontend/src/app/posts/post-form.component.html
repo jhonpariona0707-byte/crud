@@ -1,0 +1,31 @@
+<section>
+  <div class="page-heading">
+    <div>
+      <h1>{{ id === null ? 'Nuevo post' : 'Editar post' }}</h1>
+      <p>Escribe el título y el contenido de la publicación.</p>
+    </div>
+    <a class="button secondary" routerLink="/posts">Volver a posts</a>
+  </div>
+
+  @if (errorMessage) {
+    <p class="notice" role="alert">{{ errorMessage }}</p>
+  }
+
+  @if (loading) {
+    <div class="card"><p>Cargando post…</p></div>
+  } @else {
+    <form class="card form-card" (ngSubmit)="save()">
+      <div class="form-field">
+        <label for="title">Título</label>
+        <input id="title" name="title" [(ngModel)]="post.title" required />
+      </div>
+      <div class="form-field">
+        <label for="content">Contenido</label>
+        <textarea id="content" name="content" [(ngModel)]="post.content" required></textarea>
+      </div>
+      <button class="button" type="submit" [disabled]="saving">
+        {{ saving ? 'Guardando…' : id === null ? 'Crear post' : 'Guardar cambios' }}
+      </button>
+    </form>
+  }
+</section>

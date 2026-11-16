@@ -10,6 +10,26 @@ class AlumnosControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "API should return alumnos as JSON" do
+    get api_v1_alumnos_url
+
+    assert_response :success
+    assert_equal "application/json", response.media_type
+    assert_kind_of Array, response.parsed_body
+    assert response.parsed_body.any? { |alumno| alumno["id"] == @alumno.id }
+  end
+
+  test "API should create an alumno and return JSON" do
+    attributes = { nombre: "Ana", apellido: "Pérez", edad: 20, correo: "ana@example.com" }
+
+    assert_difference("Alumno.count") do
+      post api_v1_alumnos_url, params: { alumno: attributes }, as: :json
+    end
+
+    assert_response :created
+    assert_equal "Ana", response.parsed_body["nombre"]
+  end
+
   test "should get new" do
     get new_alumno_url
     assert_response :success

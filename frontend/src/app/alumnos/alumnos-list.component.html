@@ -1,0 +1,50 @@
+<section>
+  <div class="page-heading">
+    <div>
+      <h1>Alumnos</h1>
+      <p>Administra los alumnos registrados.</p>
+    </div>
+    <a class="button" routerLink="/alumnos/nuevo">Nuevo alumno</a>
+  </div>
+
+  @if (errorMessage) {
+    <p class="notice" role="alert">{{ errorMessage }}</p>
+  }
+
+  <div class="card table-wrap">
+    @if (loading) {
+      <p class="empty-state">Cargando alumnos…</p>
+    } @else if (alumnos.length === 0) {
+      <p class="empty-state">Todavía no hay alumnos registrados.</p>
+    } @else {
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (alumno of alumnos; track alumno.id) {
+            <tr>
+              <td>{{ alumno.nombre }}</td>
+              <td>{{ alumno.apellido }}</td>
+              <td>{{ alumno.edad ?? '—' }}</td>
+              <td>{{ alumno.correo }}</td>
+              <td>
+                <div class="actions">
+                  <a class="button secondary" [routerLink]="['/alumnos', alumno.id]">Ver</a>
+                  <a class="button secondary" [routerLink]="['/alumnos', alumno.id, 'editar']">Editar</a>
+                  <button class="button danger" type="button" (click)="deleteAlumno(alumno)">Eliminar</button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+</section>

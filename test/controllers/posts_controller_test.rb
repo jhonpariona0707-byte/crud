@@ -10,6 +10,26 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "API should return posts as JSON" do
+    get api_v1_posts_url
+
+    assert_response :success
+    assert_equal "application/json", response.media_type
+    assert_kind_of Array, response.parsed_body
+    assert response.parsed_body.any? { |post| post["id"] == @post.id }
+  end
+
+  test "API should create a post and return JSON" do
+    attributes = { title: "Nuevo post", content: "Contenido del post" }
+
+    assert_difference("Post.count") do
+      post api_v1_posts_url, params: { post: attributes }, as: :json
+    end
+
+    assert_response :created
+    assert_equal "Nuevo post", response.parsed_body["title"]
+  end
+
   test "should get new" do
     get new_post_url
     assert_response :success

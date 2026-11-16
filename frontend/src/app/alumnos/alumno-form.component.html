@@ -1,0 +1,39 @@
+<section>
+  <div class="page-heading">
+    <div>
+      <h1>{{ id === null ? 'Nuevo alumno' : 'Editar alumno' }}</h1>
+      <p>Completa los datos del alumno.</p>
+    </div>
+    <a class="button secondary" routerLink="/alumnos">Volver a alumnos</a>
+  </div>
+
+  @if (errorMessage) {
+    <p class="notice" role="alert">{{ errorMessage }}</p>
+  }
+
+  @if (loading) {
+    <div class="card"><p>Cargando alumno…</p></div>
+  } @else {
+    <form class="card form-card" (ngSubmit)="save()">
+      <div class="form-field">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" name="nombre" [(ngModel)]="alumno.nombre" required />
+      </div>
+      <div class="form-field">
+        <label for="apellido">Apellido</label>
+        <input id="apellido" name="apellido" [(ngModel)]="alumno.apellido" required />
+      </div>
+      <div class="form-field">
+        <label for="edad">Edad</label>
+        <input id="edad" name="edad" type="number" min="0" [(ngModel)]="alumno.edad" />
+      </div>
+      <div class="form-field">
+        <label for="correo">Correo</label>
+        <input id="correo" name="correo" type="email" [(ngModel)]="alumno.correo" required />
+      </div>
+      <button class="button" type="submit" [disabled]="saving">
+        {{ saving ? 'Guardando…' : id === null ? 'Crear alumno' : 'Guardar cambios' }}
+      </button>
+    </form>
+  }
+</section>
